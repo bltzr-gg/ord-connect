@@ -4,6 +4,10 @@ const KEY_PREFIX = "ord-connect";
 
 // Helper function to get item from localStorage
 function getItemFromLocalStorage<T>(_key: string): T | null {
+  if (typeof localStorage === "undefined") {
+    return null;
+  }
+
   const key = `${KEY_PREFIX}_${_key}`;
   try {
     const value = localStorage.getItem(key);
@@ -16,6 +20,10 @@ function getItemFromLocalStorage<T>(_key: string): T | null {
 
 // Helper function to set item to localStorage
 function setItemToLocalStorage<T>(_key: string, value: T) {
+  if (typeof localStorage === "undefined") {
+    return;
+  }
+
   const key = `${KEY_PREFIX}_${_key}`;
   try {
     if (value) {
